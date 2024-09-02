@@ -25,56 +25,40 @@
    - Se aplica en la estimación de probabilidades de los símbolos de una DMS basada en una muestra de su salida, permitiendo aproximar las probabilidades reales a partir de la observación de la secuencia de salida.
 
 
-### Referencias
 
-1. Gallager, R. G. (1968). *Information Theory and Reliable Communication*. John Wiley & Sons.
-2. Proakis, J. G., & Salehi, M. (2008). *Digital Communications* (5th ed.). McGraw-Hill.  
-
-### Implementación en Python
+### Desarrollo
 
 1. **Tabla de Frecuencias de Ocurrencia de Caracteres:**
    ```python
-   def calcular_frecuencias(archivo):
-       frecuencias = {}
-       with open(archivo, 'r', encoding='utf-8') as f:
-           for linea in f:
-               for caracter in linea:
-                   if caracter in frecuencias:
-                       frecuencias[caracter] += 1
-                   else:
-                       frecuencias[caracter] = 1
-       return frecuencias
+    def generar_tablas(archivo):
+        tabla = {}
+        with open(archivo , 'r', encoding='utf-8') as archivo:
+            while True:
+                simbolo_leido = archivo.read(1)
+                if not simbolo_leido:
+                    break
+                if simbolo_leido in tabla:
+                    tabla[simbolo_leido] += 1
+                else:
+                    tabla[simbolo_leido] = 1
+        return tabla
    ```
 
 2. **Simulación de una Fuente Discreta Sin Memoria:**
    ```python
    import random
 
-   class FuenteDMS:
-       def __init__(self, simbolos, probabilidades):
-           self.simbolos = simbolos
-           self.probabilidades = probabilidades
-
-       def generar_cadena(self, longitud):
-           return ''.join(random.choices(self.simbolos, self.probabilidades, k=longitud))
+    def generar_fuente(tabla):
+        elementos = list(tabla.keys())
+        pesos = list(tabla.values())
+        def fuente(k=1):
+            return ''.join(random.choices(elementos, weights=pesos, k=k))
+        return fuente
    ```
 
 3. **Generación de un Codificador Huffman:**
    ```python
-   from heapq import heappush, heappop, heapify
-
-   def codificador_huffman(tabla_prob):
-       heap = [[peso, [simbolo, ""]] for simbolo, peso in tabla_prob.items()]
-       heapify(heap)
-       while len(heap) > 1:
-           lo = heappop(heap)
-           hi = heappop(heap)
-           for par in lo[1:]:
-               par[1] = '0' + par[1]
-           for par in hi[1:]:
-               par[1] = '1' + par[1]
-           heappush(heap, [lo[0] + hi[0]] + lo[1:] + hi[1:])
-       return sorted(heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
+    #Implementar código
 
    ```
 
@@ -90,10 +74,16 @@ Para verificar si el codificador Huffman cumple con el Teorema de Codificación 
 Este proyecto aborda los conceptos teóricos y su implementación práctica, lo que permite una comprensión profunda y la aplicación de estos conceptos en la vida real.
 
 
+### Resultados y discusion
 
 
+## Conclusiones 
 
 
+### Referencias
+
+1. Gallager, R. G. (1968). *Information Theory and Reliable Communication*. John Wiley & Sons.
+2. Proakis, J. G., & Salehi, M. (2008). *Digital Communications* (5th ed.). McGraw-Hill.  
 
 
 
