@@ -73,6 +73,8 @@ Para verificar si el codificador Huffman cumple con el Teorema de Codificación 
 
 Este proyecto aborda los conceptos teóricos y su implementación práctica, lo que permite una comprensión profunda y la aplicación de estos conceptos en la vida real.
 
+Se puede observar que el codigo verifica la prueba autom´atica
+
 
 ### Resultados y discusion
 
