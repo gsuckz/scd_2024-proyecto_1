@@ -29,57 +29,37 @@
 ### Desarrollo
 
 1. **Tabla de Frecuencias de Ocurrencia de Caracteres:**
-   ```python
-    def generar_tablas(archivo):
-        tabla = {}
-        with open(archivo , 'r', encoding='utf-8') as archivo:
-            while True:
-                simbolo_leido = archivo.read(1)
-                if not simbolo_leido:
-                    break
-                if simbolo_leido in tabla:
-                    tabla[simbolo_leido] += 1
-                else:
-                    tabla[simbolo_leido] = 1
-        return tabla
-   ```
+   El programa genera un diccionario, donde las claves son los caracteres que aparecen en el texto, y los valores, la cantidad de veces que este aparece en el texto. Para esto se lee caracter a caracter el texto y se van contando los caracteres.
 
 2. **Simulación de una Fuente Discreta Sin Memoria:**
-   ```python
-   import random
-
-    def generar_fuente(tabla):
-        elementos = list(tabla.keys())
-        pesos = list(tabla.values())
-        def fuente(k=1):
-            return ''.join(random.choices(elementos, weights=pesos, k=k))
-        return fuente
-   ```
-
+   Se toman los caracteres anteriores, y su cantidad de repeticiones para ponderarlos en la funcion random.choices(), luego la funcion retorna caracteres aleatorios, siendo los mas probables los mas repetidos. Para usarla, se usa la funcon generar_fuetne() a la cual se le envía el diccionario (o tabla) y devuelve una función que hace lo descrito anteriormente, basandose en la tabla enviada, con ademas la posibilidad de pedir mas de 1 caracter.
 3. **Generación de un Codificador Huffman:**
-   ```python
-    #Implementar código
-
-   ```
+   Para implementear el codificador Huffman se procedio como sigue:
+      * Se generar primero un arbol binario, a partir de la tabla con frecuencias. Se implemento el algoritomo de Huffman, siendo este conocido, se explican solo detalles relativos a la implementacion:
+         * Se forman tuplas de la forma (frecuencia, identificador, caracter(es)), de esta forma podemos realizar la comparacion de frecuencias, comparando tuplas. El identificador sirve para resolver las equivalencias en repeticiones, y finalmente el ultimo elemento puede ser un caracter o una tupla de caracters o tupla de tuplas de... . De esta forma, cada tupla de 3 elementos represanta un sub arbol. Los nodos estarían representado en cada tupla de 2 elementos, las que contienen caracteres o tuplas de. 
+         * Se ordenan los elementos con heapify(), de forma que estan ordenados por frecuencia. Luego se toman los 2 ultimos, y se agrega un nuevo nodo que contiene a los quitados, este se introduce a través del metodo heappush()
+         con el fin mantener el orden y poder repetir estos pasos para contruir el arbol. El nuevo "nodo" tiene :
+            * frecuencia = f1 + f2
+            * k = k1
+            * caracteres = (caracter(es)1, caracter(es)2)
+            -Notar que se indica caracter(es) cuando el elemento puede ser un caracter solo o una tupla.
+         * Una vez completado el arbol, representado por la tupla de tupals del elemento de 3 del ultimo elemento que queda del heap (Notar que esta es la condicion con la termina el algoritmo). Se retorna el arbol (tupla)
 
 4. **Aplicación con un Texto de Proyecto Gutenberg:**
-   - Obtener un libro en texto plano en UTF-8.
-   - Calcular las frecuencias de los caracteres.
-   - Crear una simulación de la fuente DMS y el codificador Huffman.
    - Evaluar la eficiencia del codificador.
+      El codigo obtenido es mas eficiente que utf-8
 
 ### Evaluación del Codificador
-Para verificar si el codificador Huffman cumple con el Teorema de Codificación de Fuente, compara la longitud promedio del código generado con la entropía de la fuente. Si la longitud media se aproxima a la entropía, el codificador es eficiente.
 
-Este proyecto aborda los conceptos teóricos y su implementación práctica, lo que permite una comprensión profunda y la aplicación de estos conceptos en la vida real.
-
-Se puede observar que el codigo verifica la prueba autom´atica
 
 
 ### Resultados y discusion
+   El codigo permite codificar y decodificar todos los caracteres del texto entregado.
+   La implementación se ejecuta en un tiempo largo (5s para el texto dado)
 
 
 ## Conclusiones 
+   A partir de este trabajo se pudo observar de manera práctica algunos resultados o conceptos de teoría de la información. En particular como se puede encontrar una manera 
 
 
 ### Referencias
