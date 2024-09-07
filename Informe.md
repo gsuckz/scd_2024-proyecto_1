@@ -47,7 +47,8 @@
 
 4. **Aplicación con un Texto de Proyecto Gutenberg:**
    - Evaluar la eficiencia del codificador.
-      El codigo obtenido es mas eficiente que utf-8
+      El codigo obtenido es mas eficiente que utf-8.
+      El codigo genera un longitud media de palabra proxima a la entropia, tanto para el texto original como secuencias aleatorias generadas con la fuente del apartado anterior.
 
 ### Evaluación del Codificador
    Se observa que la longitud media del codigo es proxima a la entropía de la fuente. Esto nos da indicio de que es un codificador optimo. Lmed < Hfuente +  1
