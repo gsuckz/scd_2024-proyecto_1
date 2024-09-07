@@ -50,12 +50,13 @@
       El codigo obtenido es mas eficiente que utf-8
 
 ### Evaluación del Codificador
-
+   Se observa que la longitud media del codigo es proxima a la entropía de la fuente. Esto nos da indicio de que es un codificador optimo. Lmed < Hfuente +  1
 
 
 ### Resultados y discusion
    El codigo permite codificar y decodificar todos los caracteres del texto entregado.
-   La implementación se ejecuta en un tiempo largo (5s para el texto dado)
+   La implementación se ejecuta en un tiempo largo (5s para el texto dado).
+   Se observa que el codigo no solo es mas eficiente que unicode, sino que la longitud media de palabra, es próxima a la entropía de la fuente
 
 
 ## Conclusiones 
